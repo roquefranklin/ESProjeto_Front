@@ -1,0 +1,8 @@
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    width: 100vw;
+    background: yellow;
+    z-index: 10000;
+}
