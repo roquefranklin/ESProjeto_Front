@@ -3,6 +3,34 @@
     justify-content: center;
     margin: 120px 0px;
 
+    .info__forms--loading {
+        .info__input--loading {
+            display: flex;
+            height: 56px;
+            width: 212px;
+            background-color: var(--mdc-filled-text-field-container-color);
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: var(--mdc-filled-text-field-container-shape);
+            border-top-right-radius: var(--mdc-filled-text-field-container-shape);
+            margin-bottom: calc(0.75rem + 14px);
+
+            &:hover {
+                background: rgba(128, 135, 139, .8);
+            }
+        }
+
+        .info__spinner {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+        }
+
+    }
+
+
     .mat-form-field {
         width: 100%;
         min-width: 300px;
