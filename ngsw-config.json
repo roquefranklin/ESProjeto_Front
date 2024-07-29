@@ -25,5 +25,17 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "info-api",
+      "urls": ["https://localhost:44388/User/email/*"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 10000,
+        "maxAge": "5s",
+        "timeout": "5s"
+      }
+    }
   ]
 }
