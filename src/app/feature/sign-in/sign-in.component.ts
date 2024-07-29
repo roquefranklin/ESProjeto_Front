@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  EventEmitter,
   inject,
   Input,
   OnInit,
-  Output,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -56,7 +54,7 @@ export class SignInComponent implements OnInit {
 
     this.signInService
       .SignIn(signIn.email, signIn.password)
-      .subscribe((token) => {
+      .subscribe(() => {
         this.router.navigate(['/home']);
       });
   }
