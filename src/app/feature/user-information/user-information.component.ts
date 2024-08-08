@@ -14,6 +14,7 @@ import { UserService } from '../../core/services/user.service';
 import { catchError, map, Observable, of } from 'rxjs';
 import { SignInService } from '../../core/services/sign-in.service';
 import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
+import { UpdateUserInfo } from '../../shared/models/UpdateUserInfo';
 
 @Component({
   selector: 'app-user-information',
@@ -43,19 +44,16 @@ export class UserInformationComponent {
 
   ngOnInit(): void {
     let tokenEmail = this.tokenService.getTokenEmail();
-    console.log('Email from token', tokenEmail);
 
     this.userInfo$ = this.userService.getUserInfo(tokenEmail).pipe(
       map((user) => {
-        console.log('Email from token observer', tokenEmail);
-        console.log('User', user);
         let form = this.formBuilder.group({
-          username: [user?.nome ?? '', Validators.required],
-          nickname: [user?.nickName ?? '', Validators.required],
-          email: [user?.email ?? '', Validators.required],
-          phone: [user?.phoneNumber ?? '', Validators.nullValidator],
-          currentPassword: ['', Validators.required],
-          newPassword: ['', Validators.required],
+          Nome: [user?.nome ?? '', Validators.required],
+          NickName: [user?.nickName ?? '', Validators.required],
+          Email: [user?.email ?? '', Validators.required],
+          PhoneNumber: [user?.phoneNumber ?? '', Validators.nullValidator],
+          newPassword: [''],
+          currentPassword: [''],
         });
 
         return form;
@@ -64,12 +62,12 @@ export class UserInformationComponent {
         console.error(err);
         return of(
           this.formBuilder.group({
-            username: ['', Validators.required],
-            nickname: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: ['', Validators.nullValidator],
-            currentPassword: ['', Validators.required],
+            Nome: ['', Validators.required],
+            NickName: ['', Validators.required],
+            PhoneNumber: ['', Validators.nullValidator],
+            Email: ['', Validators.required],
             newPassword: ['', Validators.required],
+            currentPassword: ['', Validators.required],
           })
         );
       })
@@ -77,11 +75,13 @@ export class UserInformationComponent {
   }
 
   submit(form: FormGroup) {
-    console.log(form.getRawValue());
-
     if (form.valid) {
       this.submitEM.emit(form.value);
     }
+
+    const newUserInfo = form.getRawValue() as UpdateUserInfo;
+
+    this.userService.updateUserInfo(newUserInfo).subscribe();
   }
 
   logout() {
@@ -89,6 +89,6 @@ export class UserInformationComponent {
       this.tokenService.logout();
     }
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/sign-in']);
   }
 }
