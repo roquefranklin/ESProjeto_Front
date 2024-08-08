@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { jwtDecode, JwtHeader } from 'jwt-decode';
 import { environment } from '../../../environments/environment';
 import { Token } from '../../shared/models/token';
@@ -29,6 +29,9 @@ export class SignInService {
             'refresh_token',
             JSON.stringify(response.refreshToken.toString())
           );
+        }),
+        catchError(err => {
+          throw Error(err);
         })
       );
   }
