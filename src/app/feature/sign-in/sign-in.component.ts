@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  inject,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -52,10 +47,13 @@ export class SignInComponent implements OnInit {
     const signIn: { email: string; password: string } =
       this.form.getRawValue() as { email: string; password: string };
 
-    this.signInService
-      .SignIn(signIn.email, signIn.password)
-      .subscribe(() => {
+    this.signInService.SignIn(signIn.email, signIn.password).subscribe({
+      next: () => {
         this.router.navigate(['/home']);
-      });
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }
