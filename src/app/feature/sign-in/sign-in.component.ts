@@ -9,14 +9,15 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SignInService } from '../../core/services/sign-in.service';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
   imports: [
-    CommonModule,
+    RouterLink,
+    CommonModule, 
     MatCardModule,
     MatInputModule,
     MatButtonModule,
