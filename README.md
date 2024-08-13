@@ -1,6 +1,6 @@
 # ESProjeto FrontEnd
 
-Este repositório é parte integrante do Aplicativo MotoFreta, em desenvolvimento para a disciplina de Projetos em Engenharia de Software. Nele estão contidos os códigos-fonte de backend da aplicação. 
+Este repositório é parte integrante do Aplicativo MotoFreta, em desenvolvimento para a disciplina de Projetos em Engenharia de Software. Nele estão contidos os códigos-fonte de frontend da aplicação. 
 
 O aplicativo tem como função principal o cadastro de pontos de paradas (popularmente conhecidos como bolsões) para Motoboys e Motofretistas.
 
