@@ -1,8 +1,10 @@
-.sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;
-    width: 100vw;
-    background: yellow;
-    z-index: 10000;
+:host {
+
+    .sticky {
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+        z-index: 1000;
+    }
+
 }

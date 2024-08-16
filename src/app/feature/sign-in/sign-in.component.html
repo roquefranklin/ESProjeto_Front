@@ -1,35 +1,42 @@
-<mat-card>
-    <mat-card-title>Login</mat-card-title>
-    <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-            <p>
-                <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
-                    <mat-label>Email</mat-label>
-                    <input type="text" matInput formControlName="email">
-                </mat-form-field>
-            </p>
+<div style="background: #B9371C; position: absolute;top: 0; bottom: 0; left: 0; right: 0">
+    <mat-card >
+        <mat-card-title>ENTRE COM SUA CONTA</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <p class="input-wrapper">
+                    <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
+                        <mat-label>Email</mat-label>
+                        <input placeholder="usuario@provedor.com" type="text" matInput formControlName="email">
+                    </mat-form-field>
+                </p>
 
-            <p>
-                <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
-                    <mat-label>Senha</mat-label>
-                    <input type="password" matInput formControlName="password">
-                </mat-form-field>
-            </p>
+                <p class="input-wrapper">
+                    <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
+                        <mat-label>Senha</mat-label>
+                        <input placeholder="*********" type="password" matInput formControlName="password">
+                    </mat-form-field>
+                </p>
 
-            <p *ngIf="error" class="error">
-                {{ error }}
-            </p>
+                <p class="link-forgot-password--paragraph">
+                    Esqueci minha senha
+                </p>
 
-            <div class="options">
-                <div class="button">
-                    <button type="submit" mat-button>Login</button>
+                <p *ngIf="error" class="error">
+                    {{ error }}
+                </p>
+
+                <div class="options">
+                    <div class="button">
+                        <button class="option--forms__login" type="submit" mat-button>Login</button>
+                    </div>
+
+                    <div class="button">
+                        <button class="option--forms__register" routerLink="/sign-up" type="submit"
+                            mat-button>Criar</button>
+                    </div>
                 </div>
 
-                <div class="button">
-                    <button routerLink="/sign-up" type="submit" mat-button>Criar</button>
-                </div>
-            </div>
-
-        </form>
-    </mat-card-content>
-</mat-card>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
