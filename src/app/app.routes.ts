@@ -14,7 +14,24 @@ export const routes: Routes = [
   {
     path: 'sign-in',
     canActivate: [RedirectLoggedToHomeGuard],
-    component: SignInComponent,
+    component: TemplateComponent,
+    children: [
+      {
+        path: '',
+        component: SignInComponent,
+      },
+    ],
+  },
+  {
+    path: 'sign-up',
+    canActivate: [RedirectLoggedToHomeGuard],
+    component: TemplateComponent,
+    children: [
+      {
+        path: '',
+        component: SignUpComponent,
+      },
+    ],
   },
   {
     path: 'sign-up',

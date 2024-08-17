@@ -4,6 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { jwtDecode, JwtHeader } from 'jwt-decode';
 import { environment } from '../../../environments/environment';
 import { Token } from '../../shared/models/token';
+import { NewUser } from '../../shared/models/SignUp';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +14,21 @@ export class SignUpService {
 
   constructor() {}
 
-  public SignUp(username: string, nickname: string, email: string, password: string, confirmPassword: string): Observable<Token> {
+  public SignUp(
+    username: string,
+    nickname: string,
+    email: string,
+    password: string,
+    confirmationPassword: string
+  ): Observable<Token> {
     return this.http
       .post<Token>(`${environment.BASE_URL}/User/register`, {
-        username,
-        nickname,
-        email,
-        password,
-        confirmPassword,
-      })
+        Nome: username,
+        NickName: nickname,
+        Email: email,
+        Password: password,
+        ConfirmationPassword: confirmationPassword,
+      } as NewUser)
       .pipe();
   }
 }

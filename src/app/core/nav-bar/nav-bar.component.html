@@ -1,14 +1,12 @@
+@if (!(isLogging$ | async)){
 <div class="sticky">
     <div class="navbar--bottom ui three item menu">
-        @if (!tokenService.isAuthenticated()){
-        <a routerLinkActive="active" class="item" routerLink="/sign-in">Logar</a>
-        <a routerLinkActive="active" class="item" routerLink="/sign-up">Registrar</a>
-        }
-        @else{
+
         <ng-container [ngTemplateOutlet]="navigationTemplate || defaultNavigationOptions"></ng-container>
         <ng-template #defaultNavigationOptions>
-
+            
         </ng-template>
-        }
+
     </div>
 </div>
+}
