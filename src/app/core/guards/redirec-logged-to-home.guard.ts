@@ -11,8 +11,6 @@ export const RedirectLoggedToHomeGuard: CanActivateChildFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  console.log('teste', inject(SignInService).isAuthenticated());
-
   const isLogged = inject(SignInService).isAuthenticated();
 
   if (isLogged) return inject(Router).navigate(['/home']);
