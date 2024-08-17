@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -15,6 +23,7 @@ import { catchError, map, Observable, of } from 'rxjs';
 import { SignInService } from '../../core/services/sign-in.service';
 import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 import { UpdateUserInfo } from '../../shared/models/UpdateUserInfo';
+import { BottomMenuManagerService } from '../../core/services/bottom-menu-manager.service';
 
 @Component({
   selector: 'app-user-information',
@@ -36,11 +45,13 @@ export class UserInformationComponent {
   private userService: UserService = inject(UserService);
   private tokenService: SignInService = inject(SignInService);
   private router: Router = inject(Router);
+  private menuButtonService = inject(BottomMenuManagerService);
 
   public userInfo$?: Observable<FormGroup>;
 
   @Input('error-message') error: string | null = null;
   @Output('login') submitEM = new EventEmitter();
+  @ViewChild('userInfo') menuOptions!: TemplateRef<any>;
 
   ngOnInit(): void {
     let tokenEmail = this.tokenService.getTokenEmail();
@@ -72,6 +83,10 @@ export class UserInformationComponent {
         );
       })
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.menuButtonService.setMenuOption(this.menuOptions);
   }
 
   submit(form: FormGroup) {

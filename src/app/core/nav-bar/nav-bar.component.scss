@@ -1,5 +1,12 @@
 :host {
 
+    .navbar--bottom {
+        background: #B9371C;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+
+    }
+
     .sticky {
         position: fixed;
         bottom: 0;

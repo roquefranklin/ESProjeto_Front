@@ -6,6 +6,9 @@ import { UserInformationComponent } from './feature/user-information/user-inform
 import { AuthenticationGuard } from './core/guards/authenticate.guard';
 import { TemplateComponent } from './core/template/template.component';
 import { RedirectLoggedToHomeGuard } from './core/guards/redirec-logged-to-home.guard';
+import { StopPointRankComponent } from './feature/stop-point-rank/stop-point-rank.component';
+import { StopPointInfoComponent } from './feature/stop-point-info/stop-point-info.component';
+import { StopPointRatingComponent } from './feature/stop-point-rating/stop-point-rating.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +33,18 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+      },
+      {
+        path: 'stop-point-rank',
+        component: StopPointRankComponent,
+      },
+      {
+        path: 'stop-point-info',
+        component: StopPointInfoComponent,
+      },
+      {
+        path: 'stop-point-rating',
+        component: StopPointRatingComponent,
       },
     ],
   },

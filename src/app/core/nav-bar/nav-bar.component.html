@@ -1,15 +1,14 @@
 <div class="sticky">
-    <div class="ui three item menu">
-
+    <div class="navbar--bottom ui three item menu">
         @if (!tokenService.isAuthenticated()){
-            <a routerLinkActive="active" class="item" routerLink="/sign-in">Logar</a>
-            <a routerLinkActive="active" class="item" routerLink="/sign-up">Registrar</a>
+        <a routerLinkActive="active" class="item" routerLink="/sign-in">Logar</a>
+        <a routerLinkActive="active" class="item" routerLink="/sign-up">Registrar</a>
         }
         @else{
-            <a routerLinkActive="active" class="item" >Avaliar</a>
-            <a routerLinkActive="active" class="item">Ranking</a>
-            <a routerLinkActive="active" class="item" routerLink="/user-information">Informações</a>
-        }
+        <ng-container [ngTemplateOutlet]="navigationTemplate || defaultNavigationOptions"></ng-container>
+        <ng-template #defaultNavigationOptions>
 
+        </ng-template>
+        }
     </div>
 </div>

@@ -17,7 +17,7 @@ import { SignInService } from '../../core/services/sign-in.service';
   standalone: true,
   imports: [
     RouterLink,
-    CommonModule, 
+    CommonModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,

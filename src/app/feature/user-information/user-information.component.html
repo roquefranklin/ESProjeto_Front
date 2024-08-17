@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="button">
-                    <button type="button" mat-button (click)="logout()">Logout</button>
+                    <button type="button" mat-button>Logout</button>
                 </div>
 
                 <div class="button">
@@ -88,3 +88,11 @@
         }
     </mat-card-content>
 </mat-card>
+
+<ng-template #userInfo>
+    <a routerLinkActive="active" routerLink="/home" class="item"><img src="icons/return.png" height="35px" width="30px"
+            alt="go to rate page"></a>
+    <button style="border: none;" class="item" (click)="logout()">LOGOUT</button>
+    <button class="item" style="border: none;">
+        <img src="icons/ok.png" height="35px" width="30px" alt="go to user information page"></button>
+</ng-template>

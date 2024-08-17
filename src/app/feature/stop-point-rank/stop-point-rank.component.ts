@@ -3,16 +3,16 @@ import { BottomMenuManagerService } from '../../core/services/bottom-menu-manage
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-stop-point-rank',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './stop-point-rank.component.html',
+  styleUrl: './stop-point-rank.component.scss',
 })
-export class HomeComponent {
+export class StopPointRankComponent {
   private menuButtonService = inject(BottomMenuManagerService);
 
-  @ViewChild('homeMenuButtons') menuOptions!: TemplateRef<any>;
+  @ViewChild('stopPointRank') menuOptions!: TemplateRef<any>;
 
   ngAfterViewInit(): void {
     this.menuButtonService.setMenuOption(this.menuOptions);
