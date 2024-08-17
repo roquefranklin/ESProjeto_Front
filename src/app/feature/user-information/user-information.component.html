@@ -2,8 +2,8 @@
     <mat-card-title>Informações</mat-card-title>
     <mat-card-content>
 
-        @if (userInfo$ | async; as form) {
-        <form [formGroup]="form" class="info__forms" (ngSubmit)="submit(form)">
+        @if (userInfo$ | async) {
+        <form [formGroup]="formGroup" class="info__forms" #forms>
             <p>
                 <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                     <mat-label>Nome</mat-label>
@@ -50,20 +50,6 @@
                 {{ error }}
             </p>
 
-            <div style="display: flex; justify-content: space-between;">
-                <div class="button">
-                    <button type="submit" mat-button routerLink="/home">Voltar</button>
-                </div>
-
-                <div class="button">
-                    <button type="button" mat-button>Logout</button>
-                </div>
-
-                <div class="button">
-                    <button type="submit" mat-button>Atualizar</button>
-                </div>
-            </div>
-
         </form>
         } @else{
         <div class="info__forms--loading">
@@ -93,6 +79,7 @@
     <a routerLinkActive="active" routerLink="/home" class="item"><img src="icons/return.png" height="35px" width="30px"
             alt="go to rate page"></a>
     <button style="border: none;" class="item" (click)="logout()">LOGOUT</button>
-    <button class="item" style="border: none;">
-        <img src="icons/ok.png" height="35px" width="30px" alt="go to user information page"></button>
+    <button class="item" style="border: none;" (click)="submit()">
+        <img src="icons/ok.png" height="35px" width="30px" alt="go to user information page">
+    </button>
 </ng-template>

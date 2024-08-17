@@ -47,10 +47,10 @@ export class UserInformationComponent {
   private router: Router = inject(Router);
   private menuButtonService = inject(BottomMenuManagerService);
 
-  public userInfo$?: Observable<FormGroup>;
+  public userInfo$?: Observable<boolean>;
+  public formGroup!: FormGroup;
 
   @Input('error-message') error: string | null = null;
-  @Output('login') submitEM = new EventEmitter();
   @ViewChild('userInfo') menuOptions!: TemplateRef<any>;
 
   ngOnInit(): void {
@@ -67,20 +67,13 @@ export class UserInformationComponent {
           currentPassword: [''],
         });
 
-        return form;
+        this.formGroup = form;
+
+        return true;
       }),
       catchError((err) => {
         console.error(err);
-        return of(
-          this.formBuilder.group({
-            Nome: ['', Validators.required],
-            NickName: ['', Validators.required],
-            PhoneNumber: ['', Validators.nullValidator],
-            Email: ['', Validators.required],
-            newPassword: ['', Validators.required],
-            currentPassword: ['', Validators.required],
-          })
-        );
+        return of(false);
       })
     );
   }
@@ -89,14 +82,18 @@ export class UserInformationComponent {
     this.menuButtonService.setMenuOption(this.menuOptions);
   }
 
-  submit(form: FormGroup) {
-    if (form.valid) {
-      this.submitEM.emit(form.value);
+  submit() {
+    const form = this.formGroup;
+
+    if (!form.valid) {
+      return;
     }
 
     const newUserInfo = form.getRawValue() as UpdateUserInfo;
 
-    this.userService.updateUserInfo(newUserInfo).subscribe();
+    this.userService.updateUserInfo(newUserInfo).subscribe({
+      next: (next) => this.router.navigate(['/home']),
+    });
   }
 
   logout() {
