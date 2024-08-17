@@ -1,0 +1,24 @@
+:host {
+
+    header {
+
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #B9371C;
+        height: 90px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        text-align: right;
+        display: flex;
+
+        justify-content: right;
+        .header--logout{
+            align-self: center;
+            margin-right: 10px;
+        }
+
+    }
+
+}
