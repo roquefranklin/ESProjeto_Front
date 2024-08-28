@@ -19,7 +19,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
 import { SignUpService } from '../../core/services/sign-up.service';
-import { BottomMenuManagerService } from '../../core/services/bottom-menu-manager.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -52,13 +51,8 @@ export class SignUpComponent {
   });
 
   @ViewChild('signUp') menuOptions!: TemplateRef<any>;
-  private menuButtonService = inject(BottomMenuManagerService);
 
   ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    this.menuButtonService.setMenuOption(this.menuOptions);
-  }
 
   submit() {
     if (!this.form.valid) {

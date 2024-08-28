@@ -20,7 +20,7 @@ Passos para instalar o backend:
 2. FrontEnd
     - Clone o repositório: `git clone https://github.com/roquefranklin/ESProjeto_Front.git`
     - Acesse a pasta do projeto e digite `npm install`
-    - digite `ng run serve`
+    - digite `ng serve`
 
 1. BackEnd
     - Acesse [Back do projeto](https://github.com/roquefranklin/ESProjeto_Back "Back do projeto") e siga os passos do ReadMe

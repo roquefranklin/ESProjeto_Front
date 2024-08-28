@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { SignInComponent } from './feature/sign-in/sign-in.component';
 import { HomeComponent } from './feature/home/home.component';
 import { SignUpComponent } from './feature/sign-up/sign-up.component';
+import { ForgotPassComponent } from './feature/forgot-pass/forgot-pass.component';
 import { UserInformationComponent } from './feature/user-information/user-information.component';
 import { AuthenticationGuard } from './core/guards/authenticate.guard';
 import { TemplateComponent } from './core/template/template.component';
@@ -32,11 +33,17 @@ export const routes: Routes = [
         component: SignUpComponent,
       },
     ],
-  },
+  },  
   {
-    path: 'sign-up',
+    path: 'forgot-pass',
     canActivate: [RedirectLoggedToHomeGuard],
-    component: SignUpComponent,
+    component: TemplateComponent,
+    children: [
+      {
+        path: '',
+        component: ForgotPassComponent,
+      },
+    ],
   },
   {
     path: '',
