@@ -15,6 +15,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
@@ -28,6 +29,7 @@ import { SignUpService } from '../../core/services/sign-up.service';
     RouterModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
   ],
