@@ -136,5 +136,13 @@
             justify-content: flex-end;
         }
     }
+    a {
+        color:#B9371C;
+        text-decoration: underline;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+
 
 }

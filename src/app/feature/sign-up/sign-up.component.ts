@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
 import { SignUpService } from '../../core/services/sign-up.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -53,7 +54,9 @@ export class SignUpComponent {
   });
 
   @ViewChild('signUp') menuOptions!: TemplateRef<any>;
-
+  
+  constructor(private toastr: ToastrService){}
+  
   ngOnInit(): void {}
 
   submit() {
@@ -84,6 +87,7 @@ export class SignUpComponent {
         signUp.confirmationPassword
       )
       .subscribe(() => {
+        this.toastr.success('Cadastrado com sucesso!!!', 'Sucesso!!!')
         this.router.navigate(['/home']);
       });
   }

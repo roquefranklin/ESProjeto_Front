@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr'
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -27,6 +28,9 @@ import { SignInService } from '../../core/services/sign-in.service';
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent implements OnInit {
+
+  constructor(private toastr: ToastrService) {}
+
   private formBuilder: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
   private signInService: SignInService = inject(SignInService);
@@ -53,7 +57,8 @@ export class SignInComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.error(err);
+        console.error(err)
+        this.toastr.error('Login ou senha incorreta!', 'Erro!!!');
       },
     });
   }
