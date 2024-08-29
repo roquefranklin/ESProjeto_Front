@@ -1,6 +1,9 @@
-<div class="map" style="height: 100vh;"
+<div class="map" 
      leaflet
-     [leafletOptions]="options">
+     [leafletOptions]="leafletOptions"
+     [leafletBaseLayers]="baseLayers"
+     [leafletLayersControlOptions]="layersControlOptions"
+     (leafletMapReady)="onMapReady($event)">
      <ng-template #homeMenuButtons>
          <a routerLinkActive="active" routerLink="/stop-point-rating" class="item"><img src="icons/rate.png" height="35px"
                  width="30px" alt="go to rate page"></a>

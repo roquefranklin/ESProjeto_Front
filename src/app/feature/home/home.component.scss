@@ -1,4 +1,7 @@
-.map {
-    height: 100%;
-    padding: 0;
+:host {
+  .map {
+    height: 83vh;
+    margin-left: 10px;
+    margin-right: 10px;
   }
+}
