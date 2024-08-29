@@ -12,6 +12,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { ForgotPassService } from '../../core/services/forgot-pass.service';
+import { ToastrService } from 'ngx-toastr';
+
+interface ForgotPassResponse {
+  message: string;
+  // adicione outros campos conforme necessário
+}
 
 @Component({
   selector: 'app-forgot-pass',
@@ -39,6 +45,7 @@ export class ForgotPassComponent {
     email: ['', Validators.required],
   });
 
+  constructor(private toastr: ToastrService){}
   ngOnInit(): void {}
 
   submit() {
@@ -48,15 +55,15 @@ export class ForgotPassComponent {
     
     const forgotPass: { email: string } =
       this.form.getRawValue() as { email: string };
-    console.log(forgotPass)
-    this.forgotPassService.ForgotPass(forgotPass.email).subscribe({
-      next: () => {
-        this.router.navigate(['/home']);
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+      this.forgotPassService.ForgotPass(forgotPass.email).subscribe({
+        next: (ret) => {
+          this.toastr.success(ret.message, 'Sucesso!!!')
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 
 }

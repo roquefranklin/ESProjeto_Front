@@ -4,6 +4,9 @@ import { catchError, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Token } from '../../shared/models/token';
 
+interface ForgotPassResponse {
+  message: string
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -13,14 +16,14 @@ export class ForgotPassService {
 
   constructor() { }
 
-  public ForgotPass(email: string): Observable<string> {
+  public ForgotPass(email: string): Observable<ForgotPassResponse> {
     return this.http
-      .post<string>(`${environment.BASE_URL}/User/forgot-password`, {
+      .post<ForgotPassResponse>(`${environment.BASE_URL}/User/forgot-password`, {
         email,
       })
       .pipe(
         tap((response) => {
-          console.log('response',response)
+          console.log("response", response)
         }),
         catchError(err => {
           throw Error(err);
