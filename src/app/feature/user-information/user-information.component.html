@@ -4,42 +4,42 @@
 
         @if (userInfo$ | async) {
         <form [formGroup]="formGroup" class="info__forms" #forms>
-            <p>
+            <p class="input-wrapper">
                 <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                     <mat-label>Nome</mat-label>
                     <input type="text" matInput formControlName="Nome">
                 </mat-form-field>
             </p>
 
-            <p>
+            <p class="input-wrapper">
                 <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                     <mat-label>Apelido</mat-label>
                     <input type="text" matInput formControlName="NickName">
                 </mat-form-field>
             </p>
 
-            <p>
+            <p class="input-wrapper">
                 <mat-form-field [floatLabel]="'always'">
                     <mat-label>Telefone</mat-label>
                     <input type="number" matInput formControlName="PhoneNumber">
                 </mat-form-field>
             </p>
 
-            <p>
+            <p class="input-wrapper">
                 <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                     <mat-label>Email</mat-label>
                     <input type="text" matInput formControlName="Email">
                 </mat-form-field>
             </p>
 
-            <p>
+            <p class="input-wrapper">
                 <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                     <mat-label>Nova Senha</mat-label>
                     <input type="password" matInput formControlName="newPassword">
                 </mat-form-field>
             </p>
 
-            <p>
+            <p class="input-wrapper">
                 <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                     <mat-label>Senha Atual</mat-label>
                     <input type="password" matInput formControlName="currentPassword">
@@ -78,7 +78,7 @@
 <ng-template #userInfo>
     <a routerLinkActive="active" routerLink="/home" class="item"><img src="icons/return.png" height="35px" width="30px"
             alt="go to rate page"></a>
-    <button style="border: none;" class="item" (click)="logout()">LOGOUT</button>
+    <button style="border: none;" class="item" ></button>
     <button class="item" style="border: none;" (click)="submit()">
         <img src="icons/ok.png" height="35px" width="30px" alt="go to user information page">
     </button>

@@ -1,0 +1,86 @@
+.error {
+    background-color: #f44336; /* Vermelho escuro para erros */
+    color: white;
+    border: 1px solid #c62828; /* Vermelho mais escuro para a borda */
+  }
+  
+  .success {
+    background-color: #4caf50; /* Verde para sucessos */
+    color: white;
+    border: 1px solid #2e7d32; /* Verde mais escuro para a borda */
+  }
+  
+  mat-dialog-title {
+    font-weight: bold;
+  }
+  
+  mat-dialog-content {
+    padding: 20px;
+  }
+  
+  mat-dialog-actions {
+    justify-content: flex-end;
+  }
+  
+  button {
+    background-color: #c62828; /* Usando a mesma cor do botão 'Login' */
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+  
+  .button {
+    ::ng-deep .mdc-button {
+        width: 146px;
+        height: 61px;
+        gap: 0px;
+        opacity: 0px;
+
+        .mdc-button__label {
+            font-family: Roboto;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 23.44px;
+            letter-spacing: 0.005em;
+            text-align: center;
+
+        }
+
+        box-shadow: 0px 3px 5px 0px #00000033;
+        box-shadow: 0px 1px 18px 0px #0000001F;
+        box-shadow: 0px 6px 10px 0px #00000024;
+
+    }
+
+    ::ng-deep .option--forms__login {
+        background: #B9371C;
+
+        .mdc-button__label {
+
+            color: white;
+        }
+    }
+
+    ::ng-deep .option--forms__register {
+        background: white;
+
+        border: 1px solid #B9371C;
+
+        .mdc-button__label {
+            color: #D03211;
+            font-family: Roboto;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 23.44px;
+            letter-spacing: 0.005em;
+            text-align: center;
+        }
+    }
+
+}
+
+
+  button:hover {
+    background-color: #b71c1c; /* Cor ligeiramente mais escura ao passar o mouse */
+  }

@@ -3,6 +3,8 @@ import { BottomMenuManagerService } from '../../core/services/bottom-menu-manage
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { RouterLink } from '@angular/router';
 import * as L from 'leaflet';
+import { MatDialog } from '@angular/material/dialog';
+import { FormCadastroParadaComponent } from '../form-cadastro-parada/form-cadastro-parada.component';
 
 const layOsm: L.TileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -43,7 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
   layersControlOptions: L.ControlOptions = { position: 'topright' };
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   private menuButtonService = inject(BottomMenuManagerService);
 
@@ -66,6 +68,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log(map);
   }
 
+  openDialog(): void {
+    this.dialog.open(FormCadastroParadaComponent, {
+        data: {
+          title: 'Detalhes do Marcador',
+          message: 'Você clicou no marcador!',
+          isError: false,
+          isSuccess: true
+        }
+    });
+  }
   watchUserLocation(): void {
     if (navigator.geolocation) {
       this.watchId = navigator.geolocation.watchPosition(
@@ -88,13 +100,16 @@ export class HomeComponent implements OnInit, OnDestroy {
           // Adiciona o marcador personalizado
           this.marker = new L.Marker(latLng, {
             icon: new L.Icon({
-              iconSize: [50, 41],
-              iconAnchor: [13, 41],
-              iconUrl: 'assets/blue-marker.svg',
+              iconSize: [50, 81],
+              iconAnchor: [23, 51],
+              iconUrl: '/assets/blue-marker.svg',
             }),
             title: 'Você está aqui'
           }).addTo(this.map!);
 
+          this.marker.on('click', () => {
+            this.openDialog();
+          });
           // Desenha um círculo azul ao redor do marcador
           this.circle = L.circle(latLng, {
             radius: 30, // 30m de raio

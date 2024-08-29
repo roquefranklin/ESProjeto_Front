@@ -1,0 +1,35 @@
+.error {
+    background-color: #f44336; /* Vermelho escuro para erros */
+    color: white;
+    border: 1px solid #c62828; /* Vermelho mais escuro para a borda */
+  }
+  
+  .success {
+    background-color: #4caf50; /* Verde para sucessos */
+    color: white;
+    border: 1px solid #2e7d32; /* Verde mais escuro para a borda */
+  }
+  
+  mat-dialog-title {
+    font-weight: bold;
+  }
+  
+  mat-dialog-content {
+    padding: 20px;
+  }
+  
+  mat-dialog-actions {
+    justify-content: flex-end;
+  }
+  
+  button {
+    background-color: #c62828; /* Usando a mesma cor do botão 'Login' */
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #b71c1c; /* Cor ligeiramente mais escura ao passar o mouse */
+  }
