@@ -13,14 +13,14 @@ export class ForgotPassService {
 
   constructor() { }
 
-  public ForgotPass(email: string): Observable<Token> {
+  public ForgotPass(email: string): Observable<string> {
     return this.http
-      .post<Token>(`${environment.BASE_URL}/User/forgotpass`, {
+      .post<string>(`${environment.BASE_URL}/User/forgot-password`, {
         email,
       })
       .pipe(
         tap((response) => {
-          console.log(response)
+          console.log('response',response)
         }),
         catchError(err => {
           throw Error(err);
