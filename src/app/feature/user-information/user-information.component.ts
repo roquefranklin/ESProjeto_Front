@@ -90,6 +90,7 @@ export class UserInformationComponent {
     }
 
     const newUserInfo = form.getRawValue() as UpdateUserInfo;
+    newUserInfo.PhoneNumber = newUserInfo.PhoneNumber.toString() ?? '';
 
     this.userService.updateUserInfo(newUserInfo).subscribe({
       next: (next) => this.router.navigate(['/home']),
