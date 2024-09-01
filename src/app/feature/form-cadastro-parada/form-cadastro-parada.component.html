@@ -1,11 +1,42 @@
-<div >
-    <h1 mat-dialog-title>{{ title }}</h1>
-    <mat-dialog-content>
-      {{ message }}
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <div class="button">
-        <button class="option--forms__login" mat-button mat-dialog-close (click)="close()">Fechar</button>
+<header></header>
+<div class="formCadastro">
+  <mat-card>
+    <mat-card-title>Dados do ponto de parada</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <p class="input-wrapper">
+            <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
+                <input placeholder="" type="text" matInput  formControlName="latitude">
+            </mat-form-field>
+          </p>
+          <p class="input-wrapper">
+            <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
+                <input placeholder="" type="text" matInput readonly formControlName="longitude">
+            </mat-form-field>
+          </p>
+          <p class="input-wrapper">
+            <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
+                <mat-label>Nome do ponto</mat-label>
+                <input placeholder="Centro de Inovação" type="text" matInput formControlName="pointName">
+            </mat-form-field>
+          </p>
+          <p *ngIf="error" class="error">
+            {{ error }}
+        </p>
+        <div class="options">
+            <div class="button">
+                <button class="option--forms__login" type="submit" mat-button>Gravar</button>
+            </div>
+            <div class="button">
+                <button class="option--forms__register" (click)="close()"
+                    mat-button>
+                    <mat-icon>close</mat-icon>    
+                    Fechar
+                </button>
+            </div>
         </div>
-    </mat-dialog-actions>
-  </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer></mat-card-footer>
+  </mat-card>
+</div>

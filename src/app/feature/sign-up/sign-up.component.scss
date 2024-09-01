@@ -105,16 +105,6 @@
 
             }
 
-            .link-forgot-password--paragraph {
-
-                text-align: right;
-                font-family: Roboto;
-                font-size: 13px;
-                font-weight: 400;
-                line-height: 15.23px;
-
-            }
-
         }
     }
 
@@ -143,31 +133,3 @@
     }
 
 }
-// :host {
-//     display: flex;
-//     justify-content: center;
-//     margin: 120px 0px;
-
-//     .mat-form-field {
-//         width: 100%;
-//         min-width: 300px;
-//     }
-
-//     mat-card-title,
-//     mat-card-content {
-//         display: flex;
-//         justify-content: center;
-//     }
-
-//     .error {
-//         padding: 16px;
-//         width: 300px;
-//         color: white;
-//         background-color: red;
-//     }
-
-//     .button {
-//         display: flex;
-//         justify-content: flex-end;
-//     }
-// }
