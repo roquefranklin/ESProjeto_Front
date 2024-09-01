@@ -25,7 +25,7 @@
     padding: 20px;
     right: 0px;
     border-radius: 0;
-
+    
     mat-card-title {
         
         padding-top: 15px;
@@ -36,12 +36,12 @@
     mat-card-content {
         padding: 0px;
         background-color: white;
-
+        
         .input-wrapper {
-
+        
             mat-form-field {
                 min-width: 315px;
-
+                
                 ::ng-deep .mat-mdc-text-field-wrapper {
                     border: 1px solid #B9371C;
                     border-radius: 15px;

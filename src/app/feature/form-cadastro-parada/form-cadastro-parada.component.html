@@ -6,7 +6,7 @@
         <form [formGroup]="form" (ngSubmit)="submit()">
           <p class="input-wrapper">
             <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
-                <input placeholder="" type="text" matInput  formControlName="latitude">
+                <input placeholder="" type="text" matInput readonly formControlName="latitude">
             </mat-form-field>
           </p>
           <p class="input-wrapper">
