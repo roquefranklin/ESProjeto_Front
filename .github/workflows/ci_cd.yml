@@ -1,0 +1,72 @@
+name: Node.js Build
+
+on:
+  push:
+    branches:
+      - WEB-509
+  pull_request:
+    branches:
+      - WEB-509
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['20.x']  # Versões do Node.js que você deseja testar
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      #- name: Check ESLint
+      #  run: npm run lint
+
+      #- name: Check Prettier
+      #  run: npm run prettier:check
+
+      - name: Build project
+        run: yarn run build
+
+      #- name: Run tests
+      #  run: npm test
+      
+      #- id: 'auth'
+      #  uses: 'google-github-actions/auth@v2'
+      #  with:
+      #      credentials_json: '${{ secrets.AWS_SSH_KEY }}'
+
+      #- name: 'Set up Cloud SDK'
+      #  uses: 'google-github-actions/setup-gcloud@v2'
+      - name: rsync deployment dist/
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+            switches: -avz 
+            path: dist/
+            remote_path: /home/ubuntu/front/
+            remote_host: "54.235.229.160"
+            remote_user: ubuntu
+            remote_key: ${{ secrets.AWS_SSH_KEY }}
+
+      - name: Run stop/start service
+        uses: appleboy/ssh-action@master
+        with:
+            host: "54.235.229.160"
+            username: ubuntu
+            key: ${{ secrets.AWS_SSH_KEY }}
+            port: "22"
+            script: |
+              export NVM_DIR=~/.nvm
+              source ~/.nvm/nvm.sh
+              npm --help
+              cd /home/ubuntu/front/dist/motofreta-app/              
+              sudo nginx -s reopen
