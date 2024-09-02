@@ -65,8 +65,4 @@ jobs:
             key: ${{ secrets.AWS_SSH_KEY }}
             port: "22"
             script: |
-              export NVM_DIR=~/.nvm
-              source ~/.nvm/nvm.sh
-              npm --help
-              cd /home/ubuntu/front/dist/motofreta-app/              
               sudo nginx -s reopen
