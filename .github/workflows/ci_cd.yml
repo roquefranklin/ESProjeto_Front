@@ -3,10 +3,10 @@ name: Node.js Build
 on:
   push:
     branches:
-      - KPES-56, main
+      - KPES-56
   pull_request:
     branches:
-      - KPES-56, main
+      - KPES-56
 
 jobs:
   build:
