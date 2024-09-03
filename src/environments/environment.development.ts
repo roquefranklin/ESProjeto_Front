@@ -1,3 +1,3 @@
 export const environment = {
-  BASE_URL: 'https://localhost:44388',
+  BASE_URL: 'https://api.motofreta.com.br',
 };
