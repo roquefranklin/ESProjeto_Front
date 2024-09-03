@@ -55,6 +55,7 @@ jobs:
             remote_path: /home/ubuntu/front/
             remote_host: "54.235.229.160"
             remote_user: ubuntu
+            legacy_allow_rsa_hostkeys: true
             remote_key: ${{ secrets.AWS_SSH_KEY }}
 
       - name: Run stop/start service
