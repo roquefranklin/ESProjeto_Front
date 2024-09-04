@@ -10,7 +10,7 @@ export interface Coordenadas{
 
 const layOsm: L.TileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
-  minZoom: 19,
+  minZoom: 9,
   attribution: 'Map-Name',
   detectRetina: true
 });
@@ -31,14 +31,14 @@ export class GenerateMapsService {
 
 
   public leafletOptions: L.MapOptions = {
-    zoom: 15,
-    zoomControl: false,
-    dragging: false,        // Desabilita arrastar o mapa
+    zoom: 5,
+    zoomControl: true,
+    dragging: true,        // Desabilita arrastar o mapa
     scrollWheelZoom: false, // Desabilita zoom com a roda do mouse
     doubleClickZoom: false, // Desabilita zoom com duplo clique
     boxZoom: false,         // Desabilita zoom com box (clicar e arrastar)
     keyboard: false,        // Desabilita controle via teclado
-    touchZoom: false,       // Desabilita zoom por toque (em dispositivos móveis)
+    touchZoom: true,       // Desabilita zoom por toque (em dispositivos móveis)
     inertia: false          // Desabilita o efeito de inércia ao arrastar o mapa
   };
 
