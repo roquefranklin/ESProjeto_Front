@@ -31,7 +31,7 @@ export class GenerateMapsService {
 
 
   public leafletOptions: L.MapOptions = {
-    zoom: 15,
+    zoom: 16,
     zoomControl: true,
     dragging: true,        // Desabilita arrastar o mapa
     scrollWheelZoom: false, // Desabilita zoom com a roda do mouse
