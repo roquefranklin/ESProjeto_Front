@@ -31,7 +31,7 @@ export class GenerateMapsService {
 
 
   public leafletOptions: L.MapOptions = {
-    zoom: 10,
+    zoom: 14,
     zoomControl: true,
     dragging: true,        // Desabilita arrastar o mapa
     scrollWheelZoom: false, // Desabilita zoom com a roda do mouse
@@ -39,7 +39,7 @@ export class GenerateMapsService {
     boxZoom: false,         // Desabilita zoom com box (clicar e arrastar)
     keyboard: false,        // Desabilita controle via teclado
     touchZoom: true,       // Desabilita zoom por toque (em dispositivos móveis)
-    inertia: false          // Desabilita o efeito de inércia ao arrastar o mapa
+    inertia: true          // Desabilita o efeito de inércia ao arrastar o mapa
   };
 
   public baseLayers: { [layerName: string]: L.Layer } = {
