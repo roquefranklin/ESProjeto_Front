@@ -9,7 +9,7 @@ export interface Coordenadas{
 }
 
 const layOsm: L.TileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 15,
+  maxZoom: 18,
   minZoom: 12,
   attribution: 'Map-Name',
   detectRetina: true
