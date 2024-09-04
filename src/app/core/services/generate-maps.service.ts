@@ -9,8 +9,8 @@ export interface Coordenadas{
 }
 
 const layOsm: L.TileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 18,
-  minZoom: 12,
+  maxZoom: 19,
+  minZoom: 17,
   attribution: 'Map-Name',
   detectRetina: true
 });
@@ -31,7 +31,7 @@ export class GenerateMapsService {
 
 
   public leafletOptions: L.MapOptions = {
-    zoom: 14,
+    zoom: 15,
     zoomControl: true,
     dragging: true,        // Desabilita arrastar o mapa
     scrollWheelZoom: false, // Desabilita zoom com a roda do mouse
