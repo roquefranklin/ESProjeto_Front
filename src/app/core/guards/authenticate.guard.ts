@@ -11,7 +11,7 @@ export const AuthenticationGuard: CanActivateChildFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  console.log('teste', inject(SignInService).isAuthenticated());
+  // console.log('teste', inject(SignInService).isAuthenticated());
 
   const isLogged = inject(SignInService).isAuthenticated();
 

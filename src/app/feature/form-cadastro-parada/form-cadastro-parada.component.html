@@ -1,39 +1,46 @@
-<header></header>
 <div class="formCadastro">
   <mat-card>
-    <mat-card-title>Dados do ponto de parada</mat-card-title>
+    <mat-card-title>Adicionar ponto de parada</mat-card-title>
     <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-          <p class="input-wrapper">
-            <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
-                <input placeholder="" type="text" matInput readonly formControlName="latitude">
-            </mat-form-field>
-          </p>
-          <p class="input-wrapper">
-            <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
-                <input placeholder="" type="text" matInput readonly formControlName="longitude">
-            </mat-form-field>
-          </p>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <input type="hidden" name="longitude" [value]="longitude">
+        <input type="hidden" name="latitude" [value]="latitude">
+        <p class="input-wrapper ">
+          Latitude {{latitudePrint}} Longitude {{longitudePrint}}
+        </p>
           <p class="input-wrapper">
             <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                 <mat-label>Nome do ponto</mat-label>
-                <input placeholder="Centro de Inovação" type="text" matInput formControlName="pointName">
+                <input placeholder="Centro de Inovação" matInput type="text" matInput formControlName="pointName">
             </mat-form-field>
+          </p>
+          <p class="input-wrapper">
+            <mat-form-field [floatLabel]="'always'">
+                <mat-label>Descrição</mat-label>
+                <textarea placeholder="Centro de Inovação" matInput formControlName="descPoint"></textarea>
+            </mat-form-field>
+          </p>
+          <p class="input-wrapper">
+            <!-- <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
+                <input placeholder="Centro de Inovação" matInput type="" matInput formControlName="pointName">
+            </mat-form-field> -->
           </p>
           <p *ngIf="error" class="error">
             {{ error }}
         </p>
         <div class="options">
-            <div class="button">
-                <button class="option--forms__login" type="submit" mat-button>Gravar</button>
-            </div>
-            <div class="button">
-                <button class="option--forms__register" (click)="close()"
-                    mat-button>
-                    <mat-icon>close</mat-icon>    
-                    Fechar
-                </button>
-            </div>
+          <div class="button">
+            <button class="option--forms__login" (click)="close()"
+            mat-button>
+            <img src="icons/return.png" width="50px"
+            alt="go to rate page">    
+          </button>
+        </div>
+        <div class="button">
+            <button class="option--forms__login" type="submit" mat-button>
+              <img src="icons/ok.png" width="50px" alt="go to user information page">    
+            </button>
+        </div>
         </div>
         </form>
     </mat-card-content>

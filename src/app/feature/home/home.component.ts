@@ -36,14 +36,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.osmMap.watchUserLocation();
-    
     // Inscreve-se no evento para abrir o diálogo quando o marcador for clicado
     this.osmMap.markerClicked.subscribe((coords: Coordenadas) => {
       this.openDialog(coords);
     });
   }
-
+  
   ngAfterViewInit(): void {
+    this.osmMap.addClickEvent();
     this.menuButtonService.setMenuOption(this.menuOptions);
   }
 
@@ -59,11 +59,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   openDialog(coords: Coordenadas): void {
     this.dialog.open(FormCadastroParadaComponent, {
         data: {
-          title: 'Detalhes do Marcador',
+          title: 'FormCadastroPontosParada',
           message: 'Você clicou no marcador!',
           isError: false,
           isSuccess: true,
           coodenadas: coords,
+          descPoint: 'Descrição',
         }
     });
   }

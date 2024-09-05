@@ -20,18 +20,18 @@ export class NavBarComponent implements OnInit {
 
   private router: ActivatedRoute = inject(ActivatedRoute);
   public isLogging$ = this.router.url.pipe(
-    map((fragments) => fragments[0].path == 'sign-in'),
+    map((fragments) => fragments[0]?.path == 'sign-in'),
     tap((x) => console.log(x))
   );
   public isSignUp$ = this.router.url.pipe(
-    map((fragments) => fragments[0].path == 'sign-up'),
+    map((fragments) => fragments[0]?.path == 'sign-up'),
     tap((x) => console.log(x))
   );
 
   ngOnInit(): void {
     this.menuService.currentMenu.subscribe({
       next: (value) => {
-        console.log(value);
+        // console.log(value);
 
         this.navigationTemplate = value as TemplateRef<any>;
       },

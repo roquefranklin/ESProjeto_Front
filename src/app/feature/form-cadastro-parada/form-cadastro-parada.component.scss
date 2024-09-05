@@ -36,7 +36,9 @@
     mat-card-content {
         padding: 0px;
         background-color: white;
-        
+        .hide {
+            display: none;
+        }
         .input-wrapper {
         
             mat-form-field {

@@ -49,6 +49,11 @@ export class FormCadastroParadaComponent implements OnInit {
   isSuccess: boolean;
   coordenadas: Coordenadas;
   pointName: string;
+  latitudePrint: string;
+  longitudePrint: string;
+  descPoint: string;
+  latitude: any;
+  longitude: any;
 
   stopPointService: FormCadastroParadaService = inject(FormCadastroParadaService)
 
@@ -60,8 +65,6 @@ export class FormCadastroParadaComponent implements OnInit {
   private formCadastroParadaService: FormCadastroParadaService = inject(FormCadastroParadaService);
 
   public form: FormGroup = this.formBuilder.group({
-    latitude: ['', Validators.required],
-    longitude: ['', Validators.required],
     pointName: ['', Validators.required]
   });
 
@@ -77,8 +80,19 @@ export class FormCadastroParadaComponent implements OnInit {
       latitude: data.coodenadas.latitude,
       longitude: data.coodenadas.longitude
     }
-    this.pointName = data.pointName;
-  }
+    if(this.coordenadas.latitude < 0)
+      this.latitudePrint = String(this.coordenadas.latitude * (-1) + " S")
+    else
+      this.latitudePrint = String(this.coordenadas.latitude + " N")
+
+    if(this.coordenadas.longitude < 0)
+      this.longitudePrint = String(this.coordenadas.longitude * (-1) + " W")
+    else
+      this.longitudePrint = String(this.coordenadas.longitude + " E")
+
+      this.pointName = data.pointName;
+      this.descPoint = ''
+    }
   ngOnInit(): void {
     this.form.get('latitude')?.setValue(this.coordenadas.latitude)
     this.form.get('longitude')?.setValue(this.coordenadas.longitude)
