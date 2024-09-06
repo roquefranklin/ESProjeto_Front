@@ -1,10 +1,12 @@
 import { Component, EventEmitter, inject, Inject, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MAT_DIALOG_DATA, 
-        MatDialogTitle,
-        MatDialogRef, 
-        MatDialogActions, 
-        MatDialogContent } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogTitle,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogContent
+} from '@angular/material/dialog';
 import {
   FormBuilder,
   FormGroup,
@@ -20,7 +22,9 @@ import { FormCadastroParadaService } from '../../core/services/form-cadastro-par
 
 export interface Coordenadas {
   latitude: number,
-  longitude: number
+  longitude: number,
+  pointName?: string,
+  descPoint?: string
 }
 
 @Component({
@@ -51,7 +55,7 @@ export class FormCadastroParadaComponent implements OnInit {
   pointName: string;
   latitudePrint: string;
   longitudePrint: string;
-  descPoint: string;
+  descPoint: any;
   latitude: any;
   longitude: any;
 
@@ -59,13 +63,14 @@ export class FormCadastroParadaComponent implements OnInit {
 
   @Input('error-message') error: string | null = null;
   @Output('login') submitEM = new EventEmitter();
-  
+
   private formBuilder: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
   private formCadastroParadaService: FormCadastroParadaService = inject(FormCadastroParadaService);
 
   public form: FormGroup = this.formBuilder.group({
-    pointName: ['', Validators.required]
+    pointName: ['', Validators.required],
+    descPoint: ['', null],
   });
 
   constructor(
@@ -80,28 +85,34 @@ export class FormCadastroParadaComponent implements OnInit {
       latitude: data.coodenadas.latitude,
       longitude: data.coodenadas.longitude
     }
-    if(this.coordenadas.latitude < 0)
+    if (this.coordenadas.latitude < 0)
       this.latitudePrint = String(this.coordenadas.latitude * (-1) + " S")
     else
       this.latitudePrint = String(this.coordenadas.latitude + " N")
 
-    if(this.coordenadas.longitude < 0)
+    if (this.coordenadas.longitude < 0)
       this.longitudePrint = String(this.coordenadas.longitude * (-1) + " W")
     else
       this.longitudePrint = String(this.coordenadas.longitude + " E")
 
-      this.pointName = data.pointName;
-      this.descPoint = ''
-    }
+    this.pointName = data.pointName;
+    this.descPoint = ''
+  }
   ngOnInit(): void {
     this.form.get('latitude')?.setValue(this.coordenadas.latitude)
     this.form.get('longitude')?.setValue(this.coordenadas.longitude)
+    this.form.get('descPoint')?.setValue(this.descPoint)
   }
-  submit(){
+  submit() {
+    const pointData = this.form.getRawValue() as Coordenadas
+    console.log(pointData);
     this.stopPointService.criarNovoPontoDeParada({
-      nome: 'teste',
-      coordenada: (this.form.getRawValue() as Coordenadas)
-    }).subscribe((response)=>{
+      nome: pointData.pointName ?? '',
+      coordenada: {
+        longitude: this.data.coodenadas.latitude,
+        latitude: this.coordenadas.longitude,
+      }
+    }).subscribe((response) => {
       console.log(response)
     })
   }

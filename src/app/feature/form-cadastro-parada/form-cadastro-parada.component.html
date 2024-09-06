@@ -11,20 +11,20 @@
           <p class="input-wrapper">
             <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                 <mat-label>Nome do ponto</mat-label>
-                <input placeholder="Centro de Inovação" matInput type="text" matInput formControlName="pointName">
+                <input placeholder="Centro de Inovação" matInput type="text" formControlName="pointName">
             </mat-form-field>
           </p>
           <p class="input-wrapper">
             <mat-form-field [floatLabel]="'always'">
                 <mat-label>Descrição</mat-label>
-                <textarea placeholder="Centro de Inovação" matInput formControlName="descPoint"></textarea>
+                <textarea placeholder="Digite as informações do Ponto de parada" matInput formControlName="descPoint"></textarea>
             </mat-form-field>
           </p>
-          <p class="input-wrapper">
-            <!-- <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
-                <input placeholder="Centro de Inovação" matInput type="" matInput formControlName="pointName">
-            </mat-form-field> -->
-          </p>
+          <!-- <p class="input-wrapper">
+            <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
+                <input type="file" formControlName="pointName">
+            </mat-form-field>
+          </p> -->
           <p *ngIf="error" class="error">
             {{ error }}
         </p>
