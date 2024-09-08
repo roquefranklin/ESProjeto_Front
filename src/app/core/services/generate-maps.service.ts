@@ -57,7 +57,6 @@ export class GenerateMapsService {
     if (navigator.geolocation) {
       this.watchId = navigator.geolocation.watchPosition(
         (position) => {
-          console.log(position);
           this.latitude = position.coords.latitude;
           this.longitude = position.coords.longitude;
           this.accuracy = position.coords.accuracy;
