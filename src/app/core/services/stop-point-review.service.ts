@@ -1,13 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { NewReview } from '../../shared/models/NewReview';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StopPointReviewService {
+  private http: HttpClient = inject(HttpClient);
 
-  private http:HttpClient = Inject(HttpClient)
-  
   constructor() {}
+
+  public createReviewToStopPoint(newReview: NewReview) {
+    return this.http.post<any>(`${environment.BASE_URL}/Review`, newReview);
+  }
 }

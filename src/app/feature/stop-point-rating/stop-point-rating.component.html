@@ -1,11 +1,11 @@
 <div class="container">
         <mat-card>
                 <mat-card-content>
-                        <form [formGroup]="reviewFoms">
+                        <form [formGroup]="reviewForms">
                                 <div>
                                         <mat-form-field>
                                                 <mat-label>Pontos de Parada</mat-label>
-                                                <select matNativeControl required>
+                                                <select matNativeControl required formControlName="stopPointId">
                                                         <option [value]="null" selected>-- Pontos de Parada --</option>
                                                         @for (point of (closeStopPoints$ | async); track $index) {
                                                         <option [value]="point.id">{{point.name}}</option>

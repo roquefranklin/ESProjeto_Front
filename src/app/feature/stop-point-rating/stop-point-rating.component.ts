@@ -21,6 +21,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { StopPointReviewService } from '../../core/services/stop-point-review.service';
 import { StopPointsService } from '../../core/services/stop-points.service';
 import { bindCallback, first, map, Observable, switchAll, tap } from 'rxjs';
+import { NewReview } from '../../shared/models/NewReview';
 
 @Component({
   selector: 'app-stop-point-rating',
@@ -44,7 +45,7 @@ import { bindCallback, first, map, Observable, switchAll, tap } from 'rxjs';
 export class StopPointRatingComponent implements OnInit {
   private menuButtonService = inject(BottomMenuManagerService);
   private formBuilder = inject(FormBuilder);
-  public reviewFoms = this.formBuilder.group({
+  public reviewForms = this.formBuilder.group({
     stopPointId: [null, Validators.required],
     score: [0, [Validators.min(0), Validators.max(5)]],
     description: ['', Validators.nullValidator],
@@ -95,6 +96,23 @@ export class StopPointRatingComponent implements OnInit {
   }
 
   submit() {
-    console.log('enviar');
+
+    const formsData = this.reviewForms.getRawValue() as NewReveiwForm;
+
+    const newReview = {
+      stopPointId: formsData.stopPointId,
+      description: formsData.description,
+      score: formsData.score,
+    } as NewReview;
+
+    this.reviewService
+      .createReviewToStopPoint(newReview)
+      .subscribe((result) => console.log(result));
   }
 }
+
+type NewReveiwForm = {
+  stopPointId: string | null;
+  score: number;
+  description: string;
+};
