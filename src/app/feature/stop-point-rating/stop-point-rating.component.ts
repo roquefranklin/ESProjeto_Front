@@ -72,7 +72,7 @@ export class StopPointRatingComponent implements OnInit {
         })
       ),
       switchAll(),
-      map((stopPointDto) => stopPointDto.stopPoints),
+      map((stopPointDto: any) => stopPointDto.stopPoints),
       first()
     );
   }
