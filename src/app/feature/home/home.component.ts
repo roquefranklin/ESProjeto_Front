@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   baseLayers: { [layerName: string]: L.Layer; };
   layersControlOptions: L.ControlOptions;
 
-  
   private osmMap = inject(GenerateMapsService)
   constructor(private dialog: MatDialog) { 
     this.leafletOptions = this.osmMap.leafletOptions
@@ -53,7 +52,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onMapReady(map: L.Map) {
     this.osmMap.map = map;
-    console.log(map);
+
+
+
   }
 
   openDialog(coords: Coordenadas): void {
