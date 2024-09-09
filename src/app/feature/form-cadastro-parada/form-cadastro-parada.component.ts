@@ -83,6 +83,7 @@ export class FormCadastroParadaComponent implements OnInit {
 
     this.id = data.coodenadas.stopPoint ? data.coodenadas.stopPoint.id : "" 
     this.pointName = data.coodenadas.stopPoint ? data.coodenadas.stopPoint.name : "" 
+    this.descPoint = data.coodenadas.stopPoint ? data.coodenadas.stopPoint.description : ""
 
     this.title = data.title;
     this.message = data.message;
@@ -102,7 +103,6 @@ export class FormCadastroParadaComponent implements OnInit {
     else
       this.longitudePrint = String(this.coordenadas.longitude + " E")
 
-    this.descPoint = ''
   }
   ngOnInit(): void {
 
@@ -116,10 +116,11 @@ export class FormCadastroParadaComponent implements OnInit {
     const pointData = this.form.getRawValue() as Coordenadas
     this.stopPointService.criarNovoPontoDeParada({
       nome: pointData.pointName ?? '',
+      descricao: pointData.descPoint ?? '',
       coordenada: {
         latitude: this.coordenadas.latitude,
         longitude: this.data.coodenadas.longitude,
-      }
+      },
     }).subscribe((response) => {
       console.log(response)
     })

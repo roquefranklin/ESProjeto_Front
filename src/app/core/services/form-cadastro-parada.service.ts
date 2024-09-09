@@ -8,6 +8,7 @@ import { Token } from '../../shared/models/token';
 
 export interface PontoDeParada {
   nome: string,
+  descricao: string,
   coordenada: Coordenadas
 }
 interface StopPointPosition {
@@ -47,7 +48,8 @@ export class FormCadastroParadaService {
         },
         creationDate: new Date(),
         userCreatorEmail: this.signInService.getTokenEmail(),
-        name: ponto.nome
+        name: ponto.nome,
+        description: ponto.descricao
       } as StopPoint)
       .pipe();
   }

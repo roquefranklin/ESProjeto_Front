@@ -7,7 +7,8 @@ export interface StopPoint{
   id: string,
   latitude: number,
   longitude: number,
-  name: string
+  name: string,
+  description: string,
 }
 
 export interface StopPointFeatured {
