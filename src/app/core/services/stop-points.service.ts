@@ -3,9 +3,22 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Coordenadas } from '../../feature/form-cadastro-parada/form-cadastro-parada.component';
 
+export interface StopPoint{
+  id: string,
+  latitude: number,
+  longitude: number,
+  name: string
+}
+
+export interface StopPointFeatured {
+  stopPoints: StopPoint[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class StopPointsService {
   private http: HttpClient = inject(HttpClient);
 
@@ -21,7 +34,7 @@ export class StopPointsService {
       .set('longitude', position.longitude)
       .set('radius', position.radius);
 
-    return this.http.get<any[]>(`${environment.BASE_URL}/StopPoint/get-stop-points`, {
+    return this.http.get<StopPointFeatured>(`${environment.BASE_URL}/StopPoint/get-stop-points`, {
       params: params,
     });
   }

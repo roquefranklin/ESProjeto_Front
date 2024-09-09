@@ -1,14 +1,17 @@
 <div class="formCadastro">
   <mat-card>
-    <mat-card-title>Adicionar ponto de parada</mat-card-title>
+    <mat-card-title *ngIf="!id">Adicionar ponto de parada</mat-card-title>
+    <mat-card-title *ngIf="id">Dados de {{pointName}}</mat-card-title>
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="submit()">
-        <input type="hidden" name="longitude" [value]="longitude">
+        <input type="hidden" name="id" [value]="id">
         <input type="hidden" name="latitude" [value]="latitude">
+        <input type="hidden" name="longitude" [value]="longitude">
+        <input type="hidden" name="acuracity" [value]="acuracity">
         <p class="input-wrapper ">
           Latitude {{latitudePrint}} Longitude {{longitudePrint}}
         </p>
-          <p class="input-wrapper">
+          <p class="input-wrapper" *ngIf="!id">
             <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
                 <mat-label>Nome do ponto</mat-label>
                 <input placeholder="Centro de Inovação" matInput type="text" formControlName="pointName">
@@ -20,25 +23,20 @@
                 <textarea placeholder="Digite as informações do Ponto de parada" matInput formControlName="descPoint"></textarea>
             </mat-form-field>
           </p>
-          <!-- <p class="input-wrapper">
-            <mat-form-field [hideRequiredMarker]="true" [floatLabel]="'always'">
-                <input type="file" formControlName="pointName">
-            </mat-form-field>
-          </p> -->
           <p *ngIf="error" class="error">
             {{ error }}
         </p>
         <div class="options">
           <div class="button">
-            <button class="option--forms__login" (click)="close()"
+            <button class="option--forms__login" type="button" (click)="close()"
             mat-button>
             <img src="icons/return.png" width="50px"
-            alt="go to rate page">    
+            alt="go to home">    
           </button>
         </div>
-        <div class="button">
+        <div class="button" *ngIf="!id">
             <button class="option--forms__login" type="submit" mat-button>
-              <img src="icons/ok.png" width="50px" alt="go to user information page">    
+              <img src="icons/ok.png" width="50px" alt="save changes">    
             </button>
         </div>
         </div>

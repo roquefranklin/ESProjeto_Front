@@ -23,6 +23,7 @@ import { FormCadastroParadaService } from '../../core/services/form-cadastro-par
 export interface Coordenadas {
   latitude: number,
   longitude: number,
+  acuracity?: number,
   pointName?: string,
   descPoint?: string
 }
@@ -47,6 +48,7 @@ export interface Coordenadas {
 
 export class FormCadastroParadaComponent implements OnInit {
 
+  id?: string;
   title: string;
   message: string;
   isError: boolean;
@@ -58,6 +60,7 @@ export class FormCadastroParadaComponent implements OnInit {
   descPoint: any;
   latitude: any;
   longitude: any;
+  acuracity: any;
 
   stopPointService: FormCadastroParadaService = inject(FormCadastroParadaService)
 
@@ -77,13 +80,17 @@ export class FormCadastroParadaComponent implements OnInit {
     public dialogRef: MatDialogRef<FormCadastroParadaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+
+    this.id = data.coodenadas.stopPoint ? data.coodenadas.stopPoint.id : "" 
+    this.pointName = data.coodenadas.stopPoint ? data.coodenadas.stopPoint.name : "" 
+
     this.title = data.title;
     this.message = data.message;
     this.isError = data.isError;
     this.isSuccess = data.isSuccess;
     this.coordenadas = {
-      latitude: data.coodenadas.latitude,
-      longitude: data.coodenadas.longitude
+      latitude: parseFloat(data.coodenadas.latitude.toFixed(7)),
+      longitude: parseFloat(data.coodenadas.longitude.toFixed(7))
     }
     if (this.coordenadas.latitude < 0)
       this.latitudePrint = String(this.coordenadas.latitude * (-1) + " S")
@@ -95,22 +102,23 @@ export class FormCadastroParadaComponent implements OnInit {
     else
       this.longitudePrint = String(this.coordenadas.longitude + " E")
 
-    this.pointName = data.pointName;
     this.descPoint = ''
   }
   ngOnInit(): void {
+
+    this.form.get('pointName')?.setValue(this.pointName)
     this.form.get('latitude')?.setValue(this.coordenadas.latitude)
     this.form.get('longitude')?.setValue(this.coordenadas.longitude)
+    this.form.get('acuracity')?.setValue(this.coordenadas.acuracity)
     this.form.get('descPoint')?.setValue(this.descPoint)
   }
   submit() {
     const pointData = this.form.getRawValue() as Coordenadas
-    console.log(pointData);
     this.stopPointService.criarNovoPontoDeParada({
       nome: pointData.pointName ?? '',
       coordenada: {
-        longitude: this.data.coodenadas.latitude,
-        latitude: this.coordenadas.longitude,
+        latitude: this.coordenadas.latitude,
+        longitude: this.data.coodenadas.longitude,
       }
     }).subscribe((response) => {
       console.log(response)

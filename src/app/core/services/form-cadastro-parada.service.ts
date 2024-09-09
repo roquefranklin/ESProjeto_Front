@@ -39,7 +39,7 @@ export class FormCadastroParadaService {
       .post(`${environment.BASE_URL}/StopPoint/new-stop-point`, {
         stopPointPosition: {
           coords: {
-            accuracy: 0,
+            accuracy: ponto.coordenada.acuracity != 0 ? ponto.coordenada.acuracity : 0,
             latitude: ponto.coordenada.latitude,
             longitude: ponto.coordenada.longitude
           },
