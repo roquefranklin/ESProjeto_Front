@@ -40,7 +40,7 @@
           </button>
       </div>
       <div class="button" *ngIf="id">
-        <button class="option--forms__login" type="button" mat-button>
+        <button class="option--forms__login" type="button" (click)="goToRate()" mat-button>
           <img src="icons/rate.png" width="50px" alt="Avaliar ponto de parada">    
         </button>
     </div>

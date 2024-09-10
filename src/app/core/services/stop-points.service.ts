@@ -42,8 +42,6 @@ export class StopPointsService {
   getStopPointById(id: string){
     let params = new HttpParams()
     .set('id', id)
-    return this.http.get<StopPoint>(`${environment.BASE_URL}/StopPoint/`,{
-      params: params
-    });
+    return this.http.get<StopPoint>(`${environment.BASE_URL}/StopPoint/${id}`);
   }
 }

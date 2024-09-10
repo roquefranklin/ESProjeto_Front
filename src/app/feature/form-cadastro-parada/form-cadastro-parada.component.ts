@@ -134,8 +134,9 @@ export class FormCadastroParadaComponent implements OnInit {
   close(): void {
     this.dialogRef.close();
   }
+  
   goToRate(id?: string) {
-    const idItem = id == ''? this.form.value : id;
+    const idItem = id ?? this.id;
     this.router.navigate(['/stop-point-rating'], {
       queryParams: {
         id: idItem

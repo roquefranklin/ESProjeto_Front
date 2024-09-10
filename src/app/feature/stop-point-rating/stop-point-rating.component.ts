@@ -77,17 +77,19 @@ export class StopPointRatingComponent implements OnInit {
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      console.log(params['id'])
+      // console.log(params['id'])
       this.idStopPoint = params['id']
       if (params['id']) {
         this.stopPoint.getStopPointById(this.idStopPoint).pipe(
           map((sp)=>{
-            this.name = sp.name
+            this.name = "Avaliação de " + sp.name
           }),
           first()
-        )
+        ).subscribe()
         // Se houver um ID, define o valor do select e desativa o campo
         this.reviewForms.patchValue({ stopPointId: params['id']});
+      } else {
+        this.name = "Avaliação de pontos de parada"
       }
       this.createStopPointListObservable();
     });
