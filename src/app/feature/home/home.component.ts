@@ -53,8 +53,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   onMapReady(map: L.Map) {
     this.osmMap.map = map;
 
-
-
   }
 
   openDialog(coords: Coordenadas): void {

@@ -1,42 +1,43 @@
 <div class="container">
-        <mat-card>
-                <mat-card-content>
-                        <form [formGroup]="reviewForms">
-                                <div>
-                                        <mat-form-field>
-                                                <mat-label>Pontos de Parada</mat-label>
-                                                <select matNativeControl required formControlName="stopPointId">
-                                                        <option [value]="null" selected>-- Pontos de Parada --</option>
-                                                        @for (point of (closeStopPoints$ | async); track $index) {
-                                                        <option [value]="point.id">{{point.name}}</option>
-                                                        }
-                                                </select>
-                                        </mat-form-field>
-                                </div>
+  <mat-card>
+    <h3>{{name}}</h3>
+    <mat-card-content>
+      <mat-star-rating 
+        [rating]="currentRating"
+        (ratingUpdated)="onRatingChange($event)">
+      </mat-star-rating>
+      <form [formGroup]="reviewForms">
+        <div *ngIf="!idStopPoint">
+          <mat-form-field >
+            <mat-label>Pontos de Parada</mat-label>
+            <select matNativeControl required formControlName="stopPointId">
+              <option [value]="null" selected>-- Pontos de Parada --</option>
+              @for (point of (closeStopPoints$ | async); track $index) {
+              <option [value]="point.id">{{point.name}}</option>
+              }
+            </select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="idStopPoint">
+            <input type="hidden" formControlName="stopPointId">
+        </div>
+        <div>
+            <input type="hidden" formControlName="score" max="5" min="0">
+          </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <input matInput type="text" formControlName="description">
+          </mat-form-field>
+        </div>
+      </form>
 
-                                <div>
-                                        <mat-form-field>
-                                                <mat-label>Score</mat-label>
-                                                <input matInput type="number" formControlName="score" max="5" min="0">
-                                        </mat-form-field>
-                                </div>
-
-                                <div>
-                                        <mat-form-field>
-                                                <mat-label>Descrição</mat-label>
-                                                <input matInput type="text" formControlName="description">
-                                        </mat-form-field>
-                                </div>
-                        </form>
-
-                </mat-card-content>
-        </mat-card>
-
+    </mat-card-content>
+  </mat-card>
 </div>
-
 <ng-template #rateStopPoint>
-        <a routerLinkActive="active" routerLink="/home" class="item" style="margin-right: auto !important;"><img
-                        src="icons/return.png" height="35px" width="30px" alt="go to rate page"></a>
-        <button class="item" style="border: none;" (click)="submit()">
-                <img src="icons/ok.png" height="35px" width="30px" alt="go to user information page"></button>
+  <a routerLinkActive="active" routerLink="/home" class="item" style="margin-right: auto !important;"><img
+      src="icons/return.png" height="35px" width="30px" alt="go to rate page"></a>
+  <button class="item" style="border: none;" (click)="submit()">
+    <img src="icons/ok.png" height="35px" width="30px" alt="go to user information page"></button>
 </ng-template>

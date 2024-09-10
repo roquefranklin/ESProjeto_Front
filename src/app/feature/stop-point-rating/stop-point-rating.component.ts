@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { BottomMenuManagerService } from '../../core/services/bottom-menu-manager.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -22,6 +22,7 @@ import { StopPointReviewService } from '../../core/services/stop-point-review.se
 import { StopPointsService } from '../../core/services/stop-points.service';
 import { bindCallback, first, map, Observable, switchAll, tap } from 'rxjs';
 import { NewReview } from '../../shared/models/NewReview';
+import { StarRatingComponent } from '../../shared/star-rating/star-rating.component';
 
 @Component({
   selector: 'app-stop-point-rating',
@@ -38,6 +39,7 @@ import { NewReview } from '../../shared/models/NewReview';
     MatDialogContent,
     AsyncPipe,
     CommonModule,
+    StarRatingComponent,
   ],
   templateUrl: './stop-point-rating.component.html',
   styleUrl: './stop-point-rating.component.scss',
@@ -45,22 +47,50 @@ import { NewReview } from '../../shared/models/NewReview';
 export class StopPointRatingComponent implements OnInit {
   private menuButtonService = inject(BottomMenuManagerService);
   private formBuilder = inject(FormBuilder);
+  private starRatingComponent = inject(StarRatingComponent)
   public reviewForms = this.formBuilder.group({
-    stopPointId: [null, Validators.required],
+    stopPointId: ['', Validators.required],
     score: [0, [Validators.min(0), Validators.max(5)]],
     description: ['', Validators.nullValidator],
   });
 
   private reviewService = inject(StopPointReviewService);
   private stopPoint = inject(StopPointsService);
+  private router: Router = inject(Router);
+
   public closePoints: any[] = [];
+  public idStopPoint: string = ""
+  public name: string = ""
+  currentRating: number = 0;
 
   public closeStopPoints$?: Observable<any>;
 
   @ViewChild('rateStopPoint') menuOptions!: TemplateRef<any>;
 
+  constructor(private route: ActivatedRoute){
+  } 
+
+  onRatingChange(newRating: number) {
+    this.currentRating = newRating;
+    this.reviewForms.get('score')?.setValue(newRating)
+    console.log(this.reviewForms.get('score')?.value)
+  }
   ngOnInit(): void {
-    this.createStopPointListObservable();
+    this.route.queryParams.subscribe((params) => {
+      console.log(params['id'])
+      this.idStopPoint = params['id']
+      if (params['id']) {
+        this.stopPoint.getStopPointById(this.idStopPoint).pipe(
+          map((sp)=>{
+            this.name = sp.name
+          }),
+          first()
+        )
+        // Se houver um ID, define o valor do select e desativa o campo
+        this.reviewForms.patchValue({ stopPointId: params['id']});
+      }
+      this.createStopPointListObservable();
+    });
   }
 
   private createStopPointListObservable() {
@@ -96,7 +126,6 @@ export class StopPointRatingComponent implements OnInit {
   }
 
   submit() {
-
     const formsData = this.reviewForms.getRawValue() as NewReveiwForm;
 
     const newReview = {
@@ -108,6 +137,8 @@ export class StopPointRatingComponent implements OnInit {
     this.reviewService
       .createReviewToStopPoint(newReview)
       .subscribe((result) => console.log(result));
+
+    this.router.navigate(['/home']);
   }
 }
 

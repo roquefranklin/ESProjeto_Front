@@ -47,6 +47,11 @@ export const routes: Routes = [
   },
   {
     path: '',
+    redirectTo: 'sign-in', // Redireciona para 'sign-in' ao acessar a rota raiz
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: TemplateComponent,
     canActivate: [AuthenticationGuard],
     children: [

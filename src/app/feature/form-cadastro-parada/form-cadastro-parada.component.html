@@ -4,7 +4,7 @@
     <mat-card-title *ngIf="id">Dados de {{pointName}}</mat-card-title>
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="submit()">
-        <input type="hidden" name="id" [value]="id">
+        <input type="hidden" name="idStopPoint" [value]="id">
         <input type="hidden" name="latitude" [value]="latitude">
         <input type="hidden" name="longitude" [value]="longitude">
         <input type="hidden" name="acuracity" [value]="acuracity">
@@ -35,11 +35,16 @@
           </button>
         </div>
         <div class="button" *ngIf="!id">
-            <button class="option--forms__login" type="submit" mat-button>
-              <img src="icons/ok.png" width="50px" alt="save changes">    
-            </button>
-        </div>
-        </div>
+          <button class="option--forms__login" type="submit" mat-button>
+            <img src="icons/ok.png" width="50px" alt="save changes">    
+          </button>
+      </div>
+      <div class="button" *ngIf="id">
+        <button class="option--forms__login" type="button" mat-button>
+          <img src="icons/rate.png" width="50px" alt="Avaliar ponto de parada">    
+        </button>
+    </div>
+    </div>
         </form>
     </mat-card-content>
     <mat-card-footer></mat-card-footer>

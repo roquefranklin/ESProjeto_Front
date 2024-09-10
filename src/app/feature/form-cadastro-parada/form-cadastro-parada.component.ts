@@ -20,7 +20,11 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { FormCadastroParadaService } from '../../core/services/form-cadastro-parada.service';
 
+interface StopPointReturn {
+  stopPointId: string
+}
 export interface Coordenadas {
+  idStopPoint?: string,
   latitude: number,
   longitude: number,
   acuracity?: number,
@@ -111,6 +115,7 @@ export class FormCadastroParadaComponent implements OnInit {
     this.form.get('longitude')?.setValue(this.coordenadas.longitude)
     this.form.get('acuracity')?.setValue(this.coordenadas.acuracity)
     this.form.get('descPoint')?.setValue(this.descPoint)
+    this.form.get('id-stop-point')?.setValue(this.id||"")
   }
   submit() {
     const pointData = this.form.getRawValue() as Coordenadas
@@ -122,10 +127,20 @@ export class FormCadastroParadaComponent implements OnInit {
         longitude: this.data.coodenadas.longitude,
       },
     }).subscribe((response) => {
-      console.log(response)
+      const { stopPointId } = <StopPointReturn> response
+      this.goToRate(stopPointId)
     })
   }
   close(): void {
     this.dialogRef.close();
+  }
+  goToRate(id?: string) {
+    const idItem = id == ''? this.form.value : id;
+    this.router.navigate(['/stop-point-rating'], {
+      queryParams: {
+        id: idItem
+      }
+    });
+    this.close()
   }
 }

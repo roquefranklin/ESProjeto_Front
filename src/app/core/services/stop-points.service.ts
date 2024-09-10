@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Coordenadas } from '../../feature/form-cadastro-parada/form-cadastro-parada.component';
 
 export interface StopPoint{
-  id: string,
+  id?: string,
   latitude: number,
   longitude: number,
   name: string,
@@ -37,6 +37,13 @@ export class StopPointsService {
 
     return this.http.get<StopPointFeatured>(`${environment.BASE_URL}/StopPoint/get-stop-points`, {
       params: params,
+    });
+  }
+  getStopPointById(id: string){
+    let params = new HttpParams()
+    .set('id', id)
+    return this.http.get<StopPoint>(`${environment.BASE_URL}/StopPoint/`,{
+      params: params
     });
   }
 }
